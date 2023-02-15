@@ -90,7 +90,7 @@ export default function App() {
         return (
             <div onClick={() => handleFinalResult(gameRolls.id)} key={gameRolls.id} className={`card-wrapper ${gameRolls.isClicked ? "clicked" : ""}`}>
                 <figure>
-                    <img src="./game/images/maicon.png" alt="" />
+                    <img src="./images/maicon.png" alt="" />
                 </figure>
                 <h2>مافیا</h2>
             </div>
