@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/game/static/css/main.46e9d005.css",
+    "main.js": "/game/static/js/main.71f85f7b.js",
+    "static/media/BKoodakBold.TTF": "/game/static/media/BKoodakBold.3ca5422b99df715c2f4d.TTF",
+    "static/media/BMitra.TTF": "/game/static/media/BMitra.9406f2558bc66343dd9e.TTF",
+    "static/media/BMitra.woff": "/game/static/media/BMitra.690db93b742ac2bb4db5.woff",
+    "static/media/BKoodakBold.woff": "/game/static/media/BKoodakBold.3762ca225f968dc18c51.woff",
+    "index.html": "/game/index.html",
+    "main.46e9d005.css.map": "/game/static/css/main.46e9d005.css.map",
+    "main.71f85f7b.js.map": "/game/static/js/main.71f85f7b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.46e9d005.css",
+    "static/js/main.71f85f7b.js"
+  ]
+}
