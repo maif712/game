@@ -101,8 +101,8 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 1em;
+    gap: 15px;
+    margin-bottom: 0.5em;
 }
 
 .app-div__input {
@@ -114,20 +114,42 @@ body {
     border: 2px solid rgb(0,0,0,0);
     transition: all 250ms ease-in-out;
     background-color: #f8f9fe;
+    border-radius: 3px;
 }
 
 .app-div__input:focus {
     border-color: #00a8ff;
 }
 
+.app-div__buttons-wrapper {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 0.3em;
+}
+
+.app-div__make-new-game-btn,
 .app-div__add-player-btn {
+    width: 100%;
     padding: 10px;
     border: none;
-    background-color: #20bfa1;
     color: white;
-    font-size: 1.8em;
+    font-size: 1.4em;
     font-family: "mitra";
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 99999px;
+    box-shadow: 0 3px 5px rgb(189 190 205 / 81%);
+}
+
+.app-div__make-new-game-btn {
+    background-color: #19cb94;
+}
+
+.app-div__add-player-btn {
+    background-color: #2a4cf6;
 }
 
 .app__show-result {
@@ -139,6 +161,7 @@ body {
     grid-template-columns: 1fr 1fr;
     overflow-y: scroll;
     gap: 20px;
+    border-radius: 3px;
 }
 
 .card-wrapper {
@@ -177,7 +200,6 @@ body {
     font-size: 1.5em;
     z-index: 9999;
     padding: 0.5em;
-    background-color: white;
     border-radius: 20px;
     width: 80px;
     text-align: center;
@@ -196,11 +218,33 @@ body {
 }
 
 .app__show-added-roll {
+    position: relative;
     width: 100%;
     background: lightblue;
     padding: 1em;
     max-height: 400px;
     overflow-y: scroll;
+}
+
+.deleted-warning {
+    background: #c7ecee;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: fixed;
+    transform: translateY(-50%);
+    bottom: -100%;
+    box-shadow: 0 2px 7px rgb(0 0 0 / 15%);
+    transition: all 190ms ease-in-out;
+    z-index: 9999999;
+}
+
+.deleted-warning > P {
+    font-family: 'koodak';
+    font-size: 1.4em;
+}
+
+.deleted-warning.deleted {
+    bottom: 8px;
 }
 
 .app-show-added-roll__wrapper {
@@ -264,6 +308,8 @@ body {
     opacity: 0.5;
     z-index: 999999;
 }
+
+
 
 
 

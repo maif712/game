@@ -1,7 +1,7 @@
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faPlus, faMinus, faTrash, faAdd, faEdit } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useRef, useState } from "react"
 
 
@@ -14,6 +14,7 @@ export default function App() {
     const [finallResult, setFinallResult] = useState("")
 
     const [isExpanded, setIsExpanded] = useState(false)
+    const [isDeleted, setIsDeleted] = useState(false)
 
     const myInput = useRef()
 
@@ -26,11 +27,11 @@ export default function App() {
         setAddGameRollInput("")
     }
 
-    useEffect (() => {
+    useEffect(() => {
         gameRoll.length === 0 && setIsExpanded(false)
     }, [gameRoll])
 
-    
+
     const handleAddGameRoll = () => {
         const newGameRoll = {
             id: gameRoll.length === 0 ? 1 : gameRoll[gameRoll.length - 1].id + 1,
@@ -53,6 +54,10 @@ export default function App() {
     const handleDeleteGameRoll = (id) => {
         setGameRoll(prevGameRoll => prevGameRoll.filter(x => x.id !== id))
         setSecondryData(prevGameRoll => prevGameRoll.filter(x => x.id !== id))
+        setIsDeleted(true)
+        setTimeout(() => {
+            setIsDeleted(false)
+        }, 800);
     }
 
     const handleFinalResult = (id) => {
@@ -70,6 +75,13 @@ export default function App() {
 
     }
 
+    const handleNewGame = () => {
+        setGameRoll([])
+        setSecondryData([])
+        setFinallResult("")
+        Clearing()
+    }
+
     const handleExpanded = () => {
         setIsExpanded(prevExpanded => !prevExpanded)
     }
@@ -78,7 +90,7 @@ export default function App() {
         return (
             <div onClick={() => handleFinalResult(gameRolls.id)} key={gameRolls.id} className={`card-wrapper ${gameRolls.isClicked ? "clicked" : ""}`}>
                 <figure>
-                    <img src="./images/maicon.png" alt="" />
+                    <img src="./game/images/maicon.png" alt="" />
                 </figure>
                 <h2>مافیا</h2>
             </div>
@@ -98,7 +110,10 @@ export default function App() {
         <div className="app container">
             <div className="app__div">
                 <input ref={myInput} value={addGameRollInput} onKeyDown={e => handleEnterAddRoll(e)} onChange={e => setAddGameRollInput(e.target.value)} type="text" className="app-div__input" placeholder="نقش بازی را وارد کنید..." />
-                <button onClick={handleAddGameRoll} className="app-div__add-player-btn">اضافه کردن</button>
+                <div className="app-div__buttons-wrapper">
+                    <button onClick={handleNewGame} className="app-div__make-new-game-btn">ایجاد بازی جدید <FontAwesomeIcon icon={faEdit} /></button>
+                    <button onClick={handleAddGameRoll} className="app-div__add-player-btn">اضافه کردن<FontAwesomeIcon icon={faAdd} /></button>
+                </div>
             </div>
             <div className="app__show-result">
                 {showCards}
@@ -112,13 +127,17 @@ export default function App() {
                 <div className="app-show-added-roll__main-rolls-wrapper">
                     {isExpanded && showMainGameRolls}
                 </div>
+
             </div>
 
-            <div className={`show-finall-result ${finallResult ? "active": null}`}>
+            <div className={`show-finall-result ${finallResult ? "active" : null}`}>
                 <h3>{finallResult}</h3>
                 <button onClick={() => setFinallResult("")} className="btn-finall-result">!فهمیدم</button>
             </div>
             {finallResult && <div className="mask"></div>}
+            <div className={`deleted-warning ${isDeleted ? "deleted" : null}`}>
+                <p>حذف شد</p>
+            </div>
         </div>
     )
 }
