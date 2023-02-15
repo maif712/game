@@ -90,7 +90,7 @@ export default function App() {
         return (
             <div onClick={() => handleFinalResult(gameRolls.id)} key={gameRolls.id} className={`card-wrapper ${gameRolls.isClicked ? "clicked" : ""}`}>
                 <figure>
-                    <img src="./images/maicon.png" alt="" />
+                    <img src="./images/maicon.png" alt="" />  {/* add ./game/images/maicon.png in order to see the icons, we have to remove it in order to see the images in github repository */}
                 </figure>
                 <h2>مافیا</h2>
             </div>
