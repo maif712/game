@@ -1,7 +1,7 @@
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus, faMinus, faTrash, faAdd, faEdit } from "@fortawesome/free-solid-svg-icons"
+import { faPlus, faMinus, faTrash, faAdd, faEdit, faCheckCircle } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useRef, useState } from "react"
 
 
@@ -15,6 +15,7 @@ export default function App() {
 
     const [isExpanded, setIsExpanded] = useState(false)
     const [isDeleted, setIsDeleted] = useState(false)
+    const [isAdded, setIsAdded] = useState(false)
 
     const myInput = useRef()
 
@@ -25,6 +26,12 @@ export default function App() {
     function Clearing() {
         myInput.current.focus()
         setAddGameRollInput("")
+    }
+
+    function MyTimer(getFunction) {
+        setTimeout(() => {
+            getFunction(false)
+        }, 800);
     }
 
     useEffect(() => {
@@ -41,6 +48,8 @@ export default function App() {
 
         setGameRoll(prevGameRoll => [...prevGameRoll, newGameRoll])
         setSecondryData(prevSecondryData => [...prevSecondryData, newGameRoll])
+        setIsAdded(true)
+        MyTimer(setIsAdded)
         Clearing()
     }
 
@@ -55,9 +64,7 @@ export default function App() {
         setGameRoll(prevGameRoll => prevGameRoll.filter(x => x.id !== id))
         setSecondryData(prevGameRoll => prevGameRoll.filter(x => x.id !== id))
         setIsDeleted(true)
-        setTimeout(() => {
-            setIsDeleted(false)
-        }, 800);
+        MyTimer(setIsDeleted)
     }
 
     const handleFinalResult = (id) => {
@@ -137,6 +144,10 @@ export default function App() {
             {finallResult && <div className="mask"></div>}
             <div className={`deleted-warning ${isDeleted ? "deleted" : null}`}>
                 <p>حذف شد</p>
+            </div>
+            <div className={`added-successfully ${isAdded ? "active-added" : null}`}>
+                <FontAwesomeIcon className="check-icon" icon={faCheckCircle}/>
+                <p>ثبت شد</p>
             </div>
         </div>
     )

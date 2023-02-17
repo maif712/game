@@ -152,6 +152,38 @@ body {
     background-color: #2a4cf6;
 }
 
+.added-successfully {
+    background: #82ce34;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: fixed;
+    transform: translateY(-50%);
+    bottom: -100%;
+    box-shadow: 0 2px 7px rgb(0 0 0 / 15%);
+    transition: all 190ms ease-in-out;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check-icon {
+    color: green;
+    font-size: 2em;
+    background: white;
+    border-radius: 99999px;
+}
+
+.added-successfully > p {
+    font-family: 'koodak';
+    color: white;
+    font-size: 1.5em;
+}
+
+.added-successfully.active-added {
+    bottom: 8px;
+}
+
 .app__show-result {
     width: 100%;
     height: 500px;
